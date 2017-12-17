@@ -27,7 +27,7 @@ public class MembersController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String pageLogin(ModelMap model, HttpSession session)  {
-        System.out.println("In controller MembersController.pageLogin");
+        Console.WriteLine("In controller MembersController.pageLogin");
 
         User user = (User)session.getAttribute("User");
         if (user == null) {
@@ -42,16 +42,16 @@ public class MembersController {
     public String login(ModelMap model, HttpSession session,
             @RequestParam("email") String email,
             @RequestParam("password") String password)  {
-        System.out.println("In controller MembersController.login");
+        Console.WriteLine("In controller MembersController.login");
 
         User user = (User)session.getAttribute("User");
         if (user == null) {
             if (!membersService.login(email, password, session)){
-                System.out.println("Login échoué");
+                Console.WriteLine("Login échoué");
                 // Si le login a échoué
                 return "redirect:/members/login";
             } else {
-                System.out.println("Login réussit");
+                Console.WriteLine("Login réussit");
             }
         } // Si l'utilisateur est logged in
         return "redirect:/";
@@ -60,7 +60,7 @@ public class MembersController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String pageRegister(ModelMap model, HttpSession session)  {
-        System.out.println("In controller MembersController.pageRegister");
+        Console.WriteLine("In controller MembersController.pageRegister");
 
         User user = (User)session.getAttribute("User");
         if (user == null) {
@@ -76,7 +76,7 @@ public class MembersController {
             @RequestParam("username") String username,
             @RequestParam("email") String email,
             @RequestParam("password") String password)  {
-        System.out.println("In controller MembersController.register");
+        Console.WriteLine("In controller MembersController.register");
 
         User user = (User)session.getAttribute("User");
         if (user == null) {
@@ -92,7 +92,7 @@ public class MembersController {
 
     @RequestMapping("/logout")
     public String logout(ModelMap model, HttpSession session)  {
-        System.out.println("In controller MembersController.logout");
+        Console.WriteLine("In controller MembersController.logout");
 
         membersService.logout(session);
         return "redirect:/members/login";
@@ -103,7 +103,7 @@ public class MembersController {
     //@ResponseBody
     @RequestMapping("/")
     public String welcome(ModelMap model, HttpSession session)  {
-        System.out.println("In controller MembersController.welcome");
+        Console.WriteLine("In controller MembersController.welcome");
 
         return "redirect:/members/login";
     }

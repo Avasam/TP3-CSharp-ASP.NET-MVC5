@@ -33,24 +33,24 @@ public class BooksController {
     //@ResponseBody
     @RequestMapping("/")
     public String welcome(ModelMap model, HttpSession session)  {
-        System.out.println("In controller BooksController");
+        Console.WriteLine("In controller BooksController");
         User user = (User)session.getAttribute("User");
         //si l'utilisateur est connecté
         if (user != null) {
-            System.out.println("(user != null)");
+            Console.WriteLine("(user != null)");
             List<Livre> listeDeLivre = livreService.obtenirListeLivre();
-            System.out.println("Taille de la liste de livres: "+listeDeLivre.size());
+            Console.WriteLine("Taille de la liste de livres: "+listeDeLivre.size());
             model.put("listeDeLivre", listeDeLivre);
             return "index";
         } else {
-            System.out.println("do a redirect");
+            Console.WriteLine("do a redirect");
             return "redirect:/members/login";
         }
     }
 
     @RequestMapping(value = "/ajouterLivre",method = RequestMethod.GET)
     public String ajouterLivrePage(ModelMap model, HttpSession session ) {
-        System.out.println("In controller BooksController.ajouterLivrePage");
+        Console.WriteLine("In controller BooksController.ajouterLivrePage");
         User user = (User)session.getAttribute("User");
 
         if (user != null) {
@@ -70,7 +70,7 @@ public class BooksController {
             @RequestParam("language") String language,
             @RequestParam("description") String description,
             @RequestParam("keywords") String keywords) {
-        System.out.println("In controller BooksController.ajouterLivre");
+        Console.WriteLine("In controller BooksController.ajouterLivre");
 
 
         User user = (User)session.getAttribute("User");
@@ -78,15 +78,15 @@ public class BooksController {
         if (user != null) {
 
             if(livreService.ajouterLivre(isbn,author,title,nb_pages,edition, year,language,description,keywords)){
-                System.out.println("Redirecting to /");
+                Console.WriteLine("Redirecting to /");
                 // Si le livre est ajouté avec succès
                 return "redirect:/";
             }
-            System.out.println("Redirecting to /ajouterLivre");
+            Console.WriteLine("Redirecting to /ajouterLivre");
             // Si l'ajout du livre échoue
             return "redirect:/ajouterLivre";
         }
-        System.out.println("Redirecting to /members/login");
+        Console.WriteLine("Redirecting to /members/login");
         // Si l'utilisateur n'est pas connecté
         return "redirect:/members/login";
 

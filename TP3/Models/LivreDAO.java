@@ -35,7 +35,7 @@ public class LivreDAO extends DAO<Livre>{
                     stm.setString(8,x.getDescription());
                     stm.setString(9,x.getKeywords());
                     int n = stm.executeUpdate();
-                    System.out.println("stm.executeUpdate() result: "+n);
+                    Console.WriteLine("stm.executeUpdate() result: "+n);
                     if (n>0) {
                         stm.close();
                         return true;

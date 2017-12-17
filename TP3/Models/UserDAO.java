@@ -89,11 +89,11 @@ public class UserDAO extends DAO<User> {
             String req="SELECT * FROM user WHERE EMAIL = ?";
             stm = connexion.getInstance().prepareStatement(req);
             stm.setString(1,email);
-            System.out.println(stm);
+            Console.WriteLine(stm);
             r = stm.executeQuery();
-            System.out.println(r);
+            Console.WriteLine(r);
             if(r.next()){
-                System.out.println("test");
+                Console.WriteLine("test");
                 User u = new User();
                 u.setUsername(r.getString("USERNAME"));
                 u.setPassword(r.getString("PASSWORD"));

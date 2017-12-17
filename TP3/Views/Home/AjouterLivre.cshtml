@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Ajouter un livre";
+}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Home/Index">Livres</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/Home/AjouterLivre">Ajouter un livre</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active pull-right"><a href="/Members/Logout">Déconnexion</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="col-xs-offset-1 col-xs-10" style="border-style:solid;">
+
+    <form class="container-fluid login-form" action="ajouterLivre" method="post">
+        <div class="row">
+            <div class="form-group">
+                <label>Ajouter un Livre</label>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-xs-5" for="isbn">ISBN:</label>
+            <div class="form-group col-xs-7">
+                <input type="text" class="form-control" name="isbn" id="isbn" required />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-xs-5" for="author">Auteur:</label>
+            <div class="form-group col-xs-7">
+                <input type="text" class="form-control" name="author" id="author" required />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-xs-5" for="title">Titre:</label>
+            <div class="form-group col-xs-7">
+                <input type="text" class="form-control" name="title" id="title" required />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-xs-5" for="nb_pages">Nombre de pages:</label>
+            <div class="form-group col-xs-7">
+                <input type="number" class="form-control" name="nb_pages" id="nb_pages" required />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-xs-5" for="edition">Edition:</label>
+            <div class="form-group col-xs-7">
+                <input type="text" class="form-control" name="edition" id="edition" required />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-xs-5" for="year">Année:</label>
+            <div class="form-group col-xs-7">
+                <input type="number" maxlength="4" class="form-control" value="2017" name="year" id="year" required />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-xs-5" for="language">Langue:</label>
+            <div class="form-group col-xs-7">
+                <input type="text" class="form-control" name="language" id="language" required />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-xs-5" for="description">Description:</label>
+            <div class="form-group col-xs-7">
+                <input type="text" class="form-control" name="description" id="description" required />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-xs-5" for="keywords">Mots clés:</label>
+            <div class="form-group col-xs-7">
+                <input type="text" class="form-control" name="keywords" id="keywords" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <button class="form-control">Ajouter le livre</button>
+            </div>
+        </div>
+    </form>
+
+</div>

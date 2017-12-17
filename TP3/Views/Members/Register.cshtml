@@ -1,0 +1,14 @@
+@{
+    ViewBag.Title = "S'enregistrer";
+}
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" action ="register" method="post">
+        <input type="email" placeholder="Adresse courriel" name="email" required/>
+        <input type="text" placeholder="Nom d'utilisateur" name="username" required/>
+        <input type="password" placeholder="Mot de passe" name="password" required/>
+        <button id="register">Cr&eacute;er le compte</button>
+        <p class="message">D&eacute;j&agrave; un compte? <a href="login">Se connecter</a></p>
+        </form>
+    </div>
+</div>
