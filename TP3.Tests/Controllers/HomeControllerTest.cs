@@ -23,27 +23,27 @@ namespace TP3.Tests.Controllers {
         }
 
         [TestMethod]
-        public void About() {
+        public void AjouterLivre() {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            ViewResult result = controller.AjouterLivre() as ViewResult;
 
             // Assert
             Assert.AreEqual("Your application description page.", result.ViewBag.Message);
         }
 
         [TestMethod]
-        public void Contact() {
+        public void AjouterLivreAction() {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Contact() as ViewResult;
+            ViewResult result = controller.AjouterLivreAction() as ViewResult;
 
             // Assert
-            Assert.IsNotNull(result);
+            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
         }
     }
 }
