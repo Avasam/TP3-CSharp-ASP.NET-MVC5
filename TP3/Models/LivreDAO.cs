@@ -17,7 +17,7 @@ namespace TP3.Models
             conn = p_conn;
         }
 
-        public List<Livre> findAllLivres()
+        public List<Livre> FindAllLivre()
         {
             MySqlDataReader rdr = null;
 
@@ -44,7 +44,7 @@ namespace TP3.Models
             return Livres;
         }
 
-        public void createLivre(Livre l)
+        public void CreateLivre(Livre l)
         {
             try
             {

@@ -4,41 +4,33 @@ using System.Configuration;
 
 namespace TP3.Models
 {
-    public class BddContext : DbContext
-    {
-        private UserDAO users;
-        private LivreDAO livres;
+    public class BddContext : DbContext {
+        private UserDAO userDao;
+        private LivreDAO livreDao;
 
-        public BddContext() : base()
-        {
-            Users = new UserDAO(connection);
-            Livres = new LivreDAO(connection);
+        public BddContext() : base() {
+            UserDao = new UserDAO(connection);
+            LivreDao = new LivreDAO(connection);
         }
 
-        public UserDAO Users
-        {
-            get
-            {
-                return users;
+        public UserDAO UserDao {
+            get {
+                return userDao;
             }
 
-            set
-            {
-                users = value;
+            set {
+                userDao = value;
             }
 
         }
 
-        public LivreDAO Livres
-        {
-            get
-            {
-                return livres;
+        public LivreDAO LivreDao {
+            get {
+                return livreDao;
             }
 
-            set
-            {
-                livres = value;
+            set {
+                livreDao = value;
             }
         }
     }

@@ -14,27 +14,27 @@ namespace TP3.Models
             bdd = new BddContext();
         }
 
-        public void createUser(string username, string password, string email)
+        public void CreateUser(string username, string password, string email)
         {
-            bdd.Users.createUser(new User(username,password, email));
+            bdd.UserDao.CreateUser(new User(username,password, email));
         }
 
-        public User findbyemail(string email)
+        public User FindUserByEmail(string email)
         {
-            return bdd.Users.findbyemail(email);
+            return bdd.UserDao.FindUserByEmail(email);
         }
 
-        public User findbyusername(string email)
+        public User FindUserByUsername(string email)
         {
-            return bdd.Users.findbyusername(email);
+            return bdd.UserDao.FindUserByUsername(email);
         }
-        public List<Livre> findAllLivres()
+        public List<Livre> FindAllLivre()
         {
-            return bdd.Livres.findAllLivres();
+            return bdd.LivreDao.FindAllLivre();
         }
-        public void createLivre(string isbn, string author, string title, int nbPages, string edition, int year, string language, string description, string keywords)
+        public void CreateLivre(string isbn, string author, string title, int nbPages, string edition, int year, string language, string description, string keywords)
         {
-            bdd.Livres.createLivre(new Livre(isbn, author, title, nbPages, edition, year, language, description, keywords));
+            bdd.LivreDao.CreateLivre(new Livre(isbn, author, title, nbPages, edition, year, language, description, keywords));
         }
 
         public void Dispose()

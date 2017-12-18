@@ -51,7 +51,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data">
-      <HintPath>..\..\..\..\DLLs\MySql.Data\MySql.Data.DLL</HintPath>
+      <HintPath>..\packages\MySql.Data\MySql.Data.DLL</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -167,11 +167,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DAO.java" />
     <Compile Include="Models\Livre.cs" />
-    <Content Include="Models\LivreDAO.java" />
     <Compile Include="Models\User.cs" />
-    <Content Include="Models\UserDAO.java" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

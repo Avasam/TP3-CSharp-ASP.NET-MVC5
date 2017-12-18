@@ -17,7 +17,7 @@ namespace TP3.Models
             conn = p_conn;
         }
 
-        public void createUser(User u)
+        public void CreateUser(User u)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace TP3.Models
             }
         }
 
-        public User findbyemail(String email)
+        public User FindUserByEmail(String email)
         {
             MySqlDataReader rdr = null;
 
@@ -65,7 +65,7 @@ namespace TP3.Models
 
             return user;
         }
-        public User findbyusername(String username)
+        public User FindUserByUsername(String username)
         {
             MySqlDataReader rdr = null;
 
