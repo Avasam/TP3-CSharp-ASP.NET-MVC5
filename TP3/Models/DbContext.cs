@@ -19,7 +19,7 @@ namespace TP3.Models {
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("Error: {0}", ex.ToString());
+                System.Diagnostics.Debug.WriteLine("Error: {0}", ex.ToString());
 
             }
 

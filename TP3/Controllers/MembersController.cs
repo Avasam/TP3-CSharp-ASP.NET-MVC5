@@ -3,42 +3,60 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TP3.Models;
 
 namespace TP3.Controllers {
     public class MembersController : Controller {
         public ActionResult Login() {
-            return View();
+            System.Diagnostics.Debug.WriteLine("Dans login PAS action");
+            if (Session["User"] == null) {
+                // Si l'utilisateur n'est pas déjà connecté
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Register() {
-            return View();
+            if (Session["User"] == null) {
+                // Si l'utilisateur n'est pas déjà connecté
+                return View();
+            } // Si l'utilisateur est déjà connecté
+            return RedirectToAction("Index", "Home");
         }
 
-        public void Logout() {
+        public ActionResult LoginAction(string email, string password) {
+            System.Diagnostics.Debug.WriteLine("Email: "+email + " Password: " + password);
+            if (Session["User"] == null) {
+                Dal dal = new Dal();
+                User user = dal.FindUserByEmail(email);
+                if (user == null || password == null || !password.Equals(user.Password)) {
+                    System.Diagnostics.Debug.WriteLine("Login échoué");
+                    // Si le login a échoué
+                    return RedirectToAction("Login", "Members");
+                } else {
+                    System.Diagnostics.Debug.WriteLine("Login réussit");
+                    Session.Add("User", user);
+                }
+            } // Si l'utilisateur est logged in
+            return RedirectToAction("Index", "Home");
         }
 
-        // Services
-        //public bool Login(string email, string password, HttpSession session) {
-        //    Console.WriteLine("email:" + email);
-        //    Console.WriteLine("password:" + password);
-        //    User user = dao.FindByEmail(email);
-        //    Console.WriteLine("user:" + user);
-        //    if (user != null && password != null && password.Equals(user.password)) {
-        //        session.setAttribute("User", user);
-        //        return true;
-        //    }
-        //    return false;
-        //}
+        public ActionResult RegisterAction(string username, string password, string email) {
+            if (Session["User"] == null) {
+                Dal dal = new Dal();
+                if (dal.CreateUser(username, password, email)) {
+                    // Si le register a fonctionné
+                    return RedirectToAction("Login", "Members");
+                } // Si le register a échoué
+                return RedirectToAction("Register", "Members");
+            } // Si l'utilisateur est déjà connecté
+            return RedirectToAction("Index", "Home");
+        }
 
-        //public bool Register(string username, string email, string password) {
-        //    User user = new User(email, password, username);
-
-        //    return dao.create(user);
-        //}
-
-        //public void Logout(HttpSession session) {
-        //    session.invalidate();
-        //}
+        public ActionResult LogoutAction() {
+            Session.Abandon();
+            return RedirectToAction("Login", "Members");
+        }
 
     }
 }

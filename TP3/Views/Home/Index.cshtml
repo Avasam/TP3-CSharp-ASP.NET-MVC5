@@ -11,7 +11,7 @@
             <li class="active"><a href="/Home/AjouterLivre">Ajouter un livre</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li class="active pull-right"><a href="/Members/Logout">Déconnexion</a></li>
+            <li class="active pull-right"><a href="/Members/LogoutAction">Déconnexion</a></li>
         </ul>
     </div>
 </nav>
@@ -52,31 +52,31 @@
         @foreach (var livre in ViewBag.listeLivre) {
             <tr>
                 <td>
-                    ${livre.isbm}
+                    @livre.isbn
                 </td>
                 <td>
-                    ${livre.author}
+                    @livre.author
                 </td>
                 <td>
-                    ${livre.title}
+                    @livre.title
                 </td>
                 <td>
-                    ${livre.nbPages}
+                    @livre.nbPages
                 </td>
                 <td>
-                    ${livre.edition}
+                    @livre.edition
                 </td>
                 <td>
-                    ${livre.year}
+                    @livre.year
                 </td>
                 <td>
-                    ${livre.language}
+                    @livre.language
                 </td>
                 <td>
-                    ${livre.description}
+                    @livre.description
                 </td>
                 <td>
-                    ${livre.keywords}
+                    @livre.keywords
                 </td>
             </tr>
         }

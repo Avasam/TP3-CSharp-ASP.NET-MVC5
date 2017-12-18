@@ -14,9 +14,9 @@ namespace TP3.Models
             bdd = new BddContext();
         }
 
-        public void CreateUser(string username, string password, string email)
+        public bool CreateUser(string username, string password, string email)
         {
-            bdd.UserDao.CreateUser(new User(username,password, email));
+            return bdd.UserDao.CreateUser(new User(username, password, email));
         }
 
         public User FindUserByEmail(string email)
@@ -32,9 +32,9 @@ namespace TP3.Models
         {
             return bdd.LivreDao.FindAllLivre();
         }
-        public void CreateLivre(string isbn, string author, string title, int nbPages, string edition, int year, string language, string description, string keywords)
+        public bool CreateLivre(string isbn, string author, string title, int nbPages, string edition, int year, string language, string description, string keywords)
         {
-            bdd.LivreDao.CreateLivre(new Livre(isbn, author, title, nbPages, edition, year, language, description, keywords));
+            return bdd.LivreDao.CreateLivre(new Livre(isbn, author, title, nbPages, edition, year, language, description, keywords));
         }
 
         public void Dispose()

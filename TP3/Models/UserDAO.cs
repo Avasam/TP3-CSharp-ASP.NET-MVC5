@@ -17,38 +17,39 @@ namespace TP3.Models
             conn = p_conn;
         }
 
-        public void CreateUser(User u)
+        public bool CreateUser(User u)
         {
-            try
-            {
+            try {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "INSERT INTO USER(USERNAME, PASSWORD, EMAIL) VALUES(@USERNAME, @PASSWORD, @EMAIL)";
                 cmd.Prepare();
 
-                cmd.Parameters.AddWithValue("@USERNAME", u.username);
-                cmd.Parameters.AddWithValue("@PASSWORD", u.password);
-                cmd.Parameters.AddWithValue("@EMAIL", u.password);
+                cmd.Parameters.AddWithValue("@USERNAME", u.Username);
+                cmd.Parameters.AddWithValue("@PASSWORD", u.Password);
+                cmd.Parameters.AddWithValue("@EMAIL", u.Email);
 
-                cmd.ExecuteNonQuery();
-
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine("Error: {0}", ex.ToString());
+                return cmd.ExecuteNonQuery() > 0;
 
             }
+            catch (MySqlException ex) {
+                System.Diagnostics.Debug.WriteLine("Error: {0}", ex.ToString());
+
+            }
+            return false;
         }
 
         public User FindUserByEmail(String email)
         {
             MySqlDataReader rdr = null;
 
-            string stm = "SELECT * FROM USER WHERE EMAIL =" + email;
+            string stm = "SELECT * FROM USER WHERE EMAIL = @email";
 
             try
             {
                 MySqlCommand cmd = new MySqlCommand(stm, conn);
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@email", email);
                 rdr = cmd.ExecuteReader();
 
                 if (rdr.Read())
@@ -60,20 +61,23 @@ namespace TP3.Models
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("Error: {0}", ex.ToString());
+                System.Diagnostics.Debug.WriteLine("Error: {0}", ex.ToString());
             }
 
             return user;
         }
+
         public User FindUserByUsername(String username)
         {
             MySqlDataReader rdr = null;
 
-            string stm = "SELECT * FROM USER WHERE EMAIL =" + username;
+            string stm = "SELECT * FROM USER WHERE EMAIL = @username";
 
             try
             {
                 MySqlCommand cmd = new MySqlCommand(stm, conn);
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@username", username);
                 rdr = cmd.ExecuteReader();
 
                 if (rdr.Read())
@@ -85,13 +89,12 @@ namespace TP3.Models
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("Error: {0}", ex.ToString());
+                System.Diagnostics.Debug.WriteLine("Error: {0}", ex.ToString());
             }
 
             return user;
         }
 
     }
-
 
 }

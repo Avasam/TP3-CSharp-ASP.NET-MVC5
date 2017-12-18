@@ -37,14 +37,14 @@ namespace TP3.Models
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("Error: {0}", ex.ToString());
+                System.Diagnostics.Debug.WriteLine("Error: {0}", ex.ToString());
 
             }
 
             return Livres;
         }
 
-        public void CreateLivre(Livre l)
+        public bool CreateLivre(Livre l)
         {
             try
             {
@@ -63,13 +63,14 @@ namespace TP3.Models
                 cmd.Parameters.AddWithValue("@DESCRIPTION", l.description);
                 cmd.Parameters.AddWithValue("@KEYWORDS", l.keywords);
 
-                cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery() > 0;
 
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("Error: {0}", ex.ToString());
+                System.Diagnostics.Debug.WriteLine("Error: {0}", ex.ToString());
             }
+            return false;
 
         }
     }
