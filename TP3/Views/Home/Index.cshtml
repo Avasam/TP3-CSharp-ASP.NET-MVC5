@@ -30,31 +30,30 @@
     <table class="table">
         <tr>
             <th>
-                <label>ISBN</label>
+                @Html.Label("isbn", "ISBN")
             </th>
             <th>
-                <label>Auteur</label>
+                @Html.Label("author", "Author")
             </th>
             <th>
-                <label>Titre</label>
+                @Html.Label("title", "Titre")
+            <th>
+                @Html.Label("nbPages", "Nombre de Pages")
             </th>
             <th>
-                <label>Nombre de Pages</label>
+                @Html.Label("edition", "édition")
             </th>
             <th>
-                <label>Edition</label>
+                @Html.Label("year", "Année")
             </th>
             <th>
-                <label>Année</label>
+                @Html.Label("language", "Langue")
             </th>
             <th>
-                <label>Langue</label>
+                @Html.Label("description", "Description")
             </th>
             <th>
-                <label>Description</label>
-            </th>
-            <th>
-                <label>Mots-Clés</label>
+                @Html.Label("keywords", "Mots-clée")
             </th>
             <th></th> <!-- Empty Table Head for the buttons-->
         </tr>
