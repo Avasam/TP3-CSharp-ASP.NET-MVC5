@@ -22,12 +22,13 @@ namespace TP3.Models
             try {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO USER(USERNAME, PASSWORD, EMAIL) VALUES(@USERNAME, @PASSWORD, @EMAIL)";
+                cmd.CommandText = "INSERT INTO USER(USERNAME, PASSWORD, EMAIL, ROLE) VALUES(@USERNAME, @PASSWORD, @EMAIL, @ROLE)";
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@USERNAME", u.Username);
                 cmd.Parameters.AddWithValue("@PASSWORD", u.Password);
                 cmd.Parameters.AddWithValue("@EMAIL", u.Email);
+                cmd.Parameters.AddWithValue("@ROLE", u.Role);
 
                 return cmd.ExecuteNonQuery() > 0;
 
@@ -54,7 +55,7 @@ namespace TP3.Models
 
                 if (rdr.Read())
                 {
-                    user = new User(rdr.GetString(0), rdr.GetString(1), rdr.GetString(2));
+                    user = new User(rdr.GetString(0), rdr.GetString(1), rdr.GetString(2), rdr.GetString(3));
              
                 }
 
@@ -82,7 +83,7 @@ namespace TP3.Models
 
                 if (rdr.Read())
                 {
-                    user = new User(rdr.GetString(0), rdr.GetString(1), rdr.GetString(2));
+                    user = new User(rdr.GetString(0), rdr.GetString(1), rdr.GetString(2), rdr.GetString(3));
 
                 }
 

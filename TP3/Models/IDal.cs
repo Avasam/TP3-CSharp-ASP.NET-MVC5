@@ -8,7 +8,7 @@ namespace TP3.Models
 {
     interface IDal : IDisposable
     {
-        bool CreateUser(string username,string password,string email);
+        bool CreateUser(string username, string password, string email, string role="user");
         User FindUserByEmail(string email);
         User FindUserByUsername(string username);
         List<Livre> FindAllLivre();

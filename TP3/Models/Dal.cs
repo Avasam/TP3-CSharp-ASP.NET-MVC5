@@ -14,7 +14,7 @@ namespace TP3.Models
             bdd = new BddContext();
         }
 
-        public bool CreateUser(string username, string password, string email)
+        public bool CreateUser(string username, string password, string email, string role="user")
         {
             return bdd.UserDao.CreateUser(new User(username, password, email));
         }
