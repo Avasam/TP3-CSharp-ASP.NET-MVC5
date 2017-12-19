@@ -31,7 +31,6 @@ namespace TP3.Controllers {
                 Dal dal = new Dal();
 
                 if (dal.CreateLivre(isbn, author, title, nbPages, edition, year, language, description, keywords)) {
-                    System.Diagnostics.Debug.WriteLine("Redirecting to /");
                     // Si le livre est ajouté avec succès
                     return RedirectToAction("Index", "Home");
                 }
@@ -42,5 +41,28 @@ namespace TP3.Controllers {
             return RedirectToAction("Login", "Members");
         }
 
+        public ActionResult SupprimerLivreAction(string isbn = null) {
+            if (Session["User"] != null) {
+                Dal dal = new Dal();
+                if (dal.DeleteLivre(isbn)) {
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            // Si l'utilisateur n'est pas connecté
+            return RedirectToAction("Login", "Members");
+        }
+
+        public ActionResult ModifierLivreAction(string isbn = null, string author = null, string title = null, int nbPages = 0, string edition = null, int year = 0, string language = null, string description = null, string keywords = null) {
+            System.Diagnostics.Debug.WriteLine(isbn+","+ author+","+ title+","+ nbPages+","+ edition+","+ year+","+ language+","+ description+","+ keywords);
+
+            if (Session["User"] != null) {
+                Dal dal = new Dal();
+                if (dal.UpdateLivre(isbn, author, title, nbPages, edition, year, language, description, keywords)) {
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            // Si l'utilisateur n'est pas connecté
+            return RedirectToAction("Login", "Members");
+        }
     }
 }

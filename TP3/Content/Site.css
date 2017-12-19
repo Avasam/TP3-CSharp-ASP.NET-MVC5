@@ -134,3 +134,7 @@ body {
             .container .info span .fa {
                 color: #EF3B3A;
             }
+
+.clickable {
+    cursor: pointer;
+}

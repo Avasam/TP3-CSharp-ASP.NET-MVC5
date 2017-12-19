@@ -20,5 +20,103 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <!-- Modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="modifierLivreModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span>Modifier un Livre</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form class="container-fluid login-form" action="/Home/ModifierLivreAction" method="post">
+                        <div class="row">
+                            <label class="col-xs-5" for="isbn">ISBN:</label>
+                            <div class="form-group col-xs-7">
+                                <input type="text" class="form-control" name="isbn" id="isbn" required readonly />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-5" for="author">Auteur:</label>
+                            <div class="form-group col-xs-7">
+                                <input type="text" class="form-control" name="author" id="author" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-5" for="title">Titre:</label>
+                            <div class="form-group col-xs-7">
+                                <input type="text" class="form-control" name="title" id="title" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-5" for="nbPages">Nombre de pages:</label>
+                            <div class="form-group col-xs-7">
+                                <input type="number" class="form-control" name="nbPages" id="nbPages" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-5" for="edition">Edition:</label>
+                            <div class="form-group col-xs-7">
+                                <input type="text" class="form-control" name="edition" id="edition" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-5" for="year">Année:</label>
+                            <div class="form-group col-xs-7">
+                                <input type="number" maxlength="4" class="form-control" name="year" id="year" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-5" for="language">Langue:</label>
+                            <div class="form-group col-xs-7">
+                                <input type="text" class="form-control" name="language" id="language" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-5" for="description">Description:</label>
+                            <div class="form-group col-xs-7">
+                                <input type="text" class="form-control" name="description" id="description" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-5" for="keywords">Mots clés:</label>
+                            <div class="form-group col-xs-7">
+                                <input type="text" class="form-control" name="keywords" id="keywords" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-inline col-xs-8">
+                                <button class="form-control btn btn-success">Modifier le livre</button>
+                            </div>
+                            <div class="form-group col-xs-3">
+                                <button class="form-control btn btn-default" data-dismiss="modal">Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#modifierLivreModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var modal = $(this) // The modal itself
+
+            modal.find("#isbn").val(button.data("isbn"));
+            modal.find("#author").val(button.data("author"));
+            modal.find("#title").val(button.data("title"));
+            modal.find("#nbPages").val(button.data("nb-pages"));
+            modal.find("#edition").val(button.data("edition"));
+            modal.find("#year").val(button.data("year"));
+            modal.find("#language").val(button.data("language"));
+            modal.find("#description").val(button.data("description"));
+            modal.find("#keywords").val(button.data("keywords"));
+        })
+
+    </script>
 </body>
 </html>

@@ -41,6 +41,14 @@ namespace TP3.Models
         {
             bdd.Dispose();
         }
+
+        public bool DeleteLivre(string isbn) {
+            return bdd.LivreDao.DeleteLivre(isbn);
+        }
+
+        public bool UpdateLivre(string isbn, string author, string title, int nbPages, string edition, int year, string language, string description, string keywords) {
+            return bdd.LivreDao.UpdateLivre(new Livre(isbn, author, title, nbPages, edition, year, language, description, keywords));
+        }
     }
 
 }

@@ -73,5 +73,51 @@ namespace TP3.Models
             return false;
 
         }
+
+        public bool DeleteLivre(string isbn) {
+            try {
+                System.Diagnostics.Debug.WriteLine("isbn: "+isbn);
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "DELETE FROM book WHERE ISBN = @ISBN";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@ISBN", isbn);
+
+                return cmd.ExecuteNonQuery() > 0;
+
+            }
+            catch (MySqlException ex) {
+                System.Diagnostics.Debug.WriteLine("Error: {0}", ex.ToString());
+            }
+            return false;
+        }
+
+        public bool UpdateLivre(Livre l) {
+            try {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "UPDATE book SET AUTHOR = @AUTHOR, TITLE = @TITLE, NB_PAGES = @NB_PAGES, EDITION = @EDITION, YEAR = @YEAR, LANGUAGE = @LANGUAGE, DESCRIPTION = @DESCRIPTION, KEYWORDS = @KEYWORDS WHERE ISBN = @ISBN";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@ISBN", l.isbn);
+                cmd.Parameters.AddWithValue("@AUTHOR", l.author);
+                cmd.Parameters.AddWithValue("@TITLE", l.title);
+                cmd.Parameters.AddWithValue("@NB_PAGES", l.nbPages);
+                cmd.Parameters.AddWithValue("@EDITION", l.edition);
+                cmd.Parameters.AddWithValue("@YEAR", l.year);
+                cmd.Parameters.AddWithValue("@LANGUAGE", l.language);
+                cmd.Parameters.AddWithValue("@DESCRIPTION", l.description);
+                cmd.Parameters.AddWithValue("@KEYWORDS", l.keywords);
+
+                return cmd.ExecuteNonQuery() > 0;
+
+            }
+            catch (MySqlException ex) {
+                System.Diagnostics.Debug.WriteLine("Error: {0}", ex.ToString());
+            }
+            return false;
+
+        }
     }
 }

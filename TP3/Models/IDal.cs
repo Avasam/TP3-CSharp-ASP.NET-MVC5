@@ -12,6 +12,8 @@ namespace TP3.Models
         User FindUserByEmail(string email);
         User FindUserByUsername(string username);
         List<Livre> FindAllLivre();
-        bool CreateLivre(string isbn,string author, string title, int nbPages, string edition, int year, string language, string description, string keywords);
+        bool CreateLivre(string isbn, string author, string title, int nbPages, string edition, int year, string language, string description, string keywords);
+        bool DeleteLivre(string isbn);
+        bool UpdateLivre(string isbn, string author, string title, int nbPages, string edition, int year, string language, string description, string keywords);
     }
 }
