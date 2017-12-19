@@ -24,6 +24,7 @@ namespace TP3.Controllers {
             System.Diagnostics.Debug.WriteLine("Email: "+email + " Password: " + password);
             Dal dal = new Dal();
             User user = dal.FindUserByEmail(email);
+            System.Diagnostics.Debug.WriteLine(" user: " + user);
             if (user == null || password == null || !password.Equals(user.Password)) {
                 System.Diagnostics.Debug.WriteLine("Login échoué");
                 // Si le login a échoué
@@ -31,8 +32,7 @@ namespace TP3.Controllers {
             } else {
                 System.Diagnostics.Debug.WriteLine("Login réussit");
                 FormsAuthentication.SetAuthCookie(user.Email, true);
-                Roles.CreateRole(user.Role);
-                Roles.AddUserToRole(user.Email, user.Role);
+                Session["Role"] = user.Role;
                 return RedirectToAction("Index", "Home");
             }
 
