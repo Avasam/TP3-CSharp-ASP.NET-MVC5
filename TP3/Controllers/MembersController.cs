@@ -53,7 +53,7 @@ namespace TP3.Controllers {
         [Authorize]
         public ActionResult LogoutAction() {
             FormsAuthentication.SignOut();
-            Session.Abandon();
+            if (Session != null) Session.Abandon();
             return RedirectToAction("Login", "Members");
         }
 
