@@ -9,13 +9,15 @@ using TP3.Models;
 namespace TP3.Controllers {
     public class MembersController : Controller {
         [AllowAnonymous]
-        public ActionResult Login() {
+        public ActionResult Login(string error = null) {
             System.Diagnostics.Debug.WriteLine("Dans login PAS action");
+            ViewBag.error = error;
             return View();
         }
 
         [AllowAnonymous]
-        public ActionResult Register() {
+        public ActionResult Register(string error = null) {
+            ViewBag.error = error;
             return View();
         }
 
@@ -28,7 +30,7 @@ namespace TP3.Controllers {
             if (user == null || password == null || !password.Equals(user.Password)) {
                 System.Diagnostics.Debug.WriteLine("Login échoué");
                 // Si le login a échoué
-                return RedirectToAction("Login", "Members");
+                return RedirectToAction("Login", "Members", new { error = "Adresse courriel ou mot de passe invalide." });
             } else {
                 System.Diagnostics.Debug.WriteLine("Login réussit");
                 FormsAuthentication.SetAuthCookie(user.Email, true);
@@ -45,7 +47,7 @@ namespace TP3.Controllers {
                 // Si le register a fonctionné
                 return RedirectToAction("Login", "Members");
             } // Si le register a échoué
-            return RedirectToAction("Register", "Members");
+            return RedirectToAction("Register", "Members", new { error = "Il y a eu une erreur lors de l'enregistrement." });
         }
 
         [Authorize]

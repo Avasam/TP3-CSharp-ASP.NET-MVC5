@@ -10,7 +10,12 @@ namespace TP3.Controllers {
     [Authorize]
     public class HomeController : Controller {
 
-        public ActionResult Index() {
+        public ActionResult Index(string error = null, string aspxerrorpath=null) {
+            if (aspxerrorpath != null) {
+                ViewBag.error = "\""+aspxerrorpath + "\" n'est pas un chemin valide.\n+ "+ error;
+            } else {
+                ViewBag.error = error;
+            }
             Dal dal = new Dal();
             ViewBag.listeLivre = dal.FindAllLivre();
             return View();
@@ -18,22 +23,22 @@ namespace TP3.Controllers {
         }
 
         [Authorize]
-        public ActionResult AjouterLivre() {
+        public ActionResult AjouterLivre(string error=null) {
             if (!"admin".Equals(Session["Role"])) FormsAuthentication.RedirectToLoginPage();
+            ViewBag.error = error;
             return View();
         }
 
         [Authorize]
-        public ActionResult AjouterLivreAction(string isbn=null, string author=null, string title=null, int nbPages=0, string edition=null, int year=0, string language=null, string description=null, string keywords=null) {
+        public ActionResult AjouterLivreAction(string isbn = null, string author = null, string title = null, int nbPages = 0, string edition = null, int year = 0, string language = null, string description = null, string keywords = null) {
             if (!"admin".Equals(Session["Role"])) FormsAuthentication.RedirectToLoginPage();
 
             Dal dal = new Dal();
             if (dal.CreateLivre(isbn, author, title, nbPages, edition, year, language, description, keywords)) {
-                // Si le livre est ajouté avec succès
                 return RedirectToAction("Index", "Home");
+            } else {
+                return RedirectToAction("AjouterLivre", "Home", new { error = "Il y a eu une erreur lors de l'ajout du livre." });
             }
-            // Si l'ajout du livre échoue
-            return RedirectToAction("AjouterLivre", "Home");
         }
 
         [Authorize]
@@ -41,8 +46,11 @@ namespace TP3.Controllers {
             if (!"admin".Equals(Session["Role"])) FormsAuthentication.RedirectToLoginPage();
 
             Dal dal = new Dal();
-            dal.DeleteLivre(isbn);
-            return RedirectToAction("Index", "Home");
+            if (dal.DeleteLivre(isbn)) {
+                return RedirectToAction("Index", "Home");
+            } else {
+                return RedirectToAction("Index", "Home", new { error = "Il y a eu une erreur lors de a suppression du livre." });
+            }
         }
 
         [Authorize]
@@ -52,8 +60,11 @@ namespace TP3.Controllers {
             System.Diagnostics.Debug.WriteLine(isbn+","+ author+","+ title+","+ nbPages+","+ edition+","+ year+","+ language+","+ description+","+ keywords);
 
             Dal dal = new Dal();
-            dal.UpdateLivre(isbn, author, title, nbPages, edition, year, language, description, keywords);
-            return RedirectToAction("Index", "Home");
+            if (dal.UpdateLivre(isbn, author, title, nbPages, edition, year, language, description, keywords)){
+                return RedirectToAction("Index", "Home");
+            } else {
+                return RedirectToAction("Index", "Home", new { error = "Il y a eu une erreur lors de a modification du livre." });
+            }
 
         }
     }

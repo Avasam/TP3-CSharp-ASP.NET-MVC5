@@ -10,6 +10,12 @@
 </head>
 <body>
     <div class="container body-content">
+        <br />
+        @if (@ViewBag.error != null) {
+            <div class="alert alert-danger">
+                @ViewBag.error
+            </div>
+        }
         @RenderBody()
         <hr />
         <footer>
