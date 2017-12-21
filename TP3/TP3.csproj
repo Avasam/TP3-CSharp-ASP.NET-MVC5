@@ -51,7 +51,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data">
-      <HintPath>..\packages\MySql.Data\MySql.Data.DLL</HintPath>
+      <HintPath>..\..\..\..\DLLs\MySql.Data\MySql.Data.DLL</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

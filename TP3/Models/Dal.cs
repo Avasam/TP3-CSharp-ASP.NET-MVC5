@@ -24,9 +24,9 @@ namespace TP3.Models
             return bdd.UserDao.FindUserByEmail(email);
         }
 
-        public User FindUserByUsername(string email)
+        public User FindUserByUsername(string username)
         {
-            return bdd.UserDao.FindUserByUsername(email);
+            return bdd.UserDao.FindUserByUsername(username);
         }
         public List<Livre> FindAllLivre()
         {
