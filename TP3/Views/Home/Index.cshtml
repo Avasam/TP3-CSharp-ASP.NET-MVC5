@@ -55,7 +55,9 @@
             <th>
                 @Html.Label("keywords", "Mots-clée")
             </th>
-            <th></th> <!-- Empty Table Head for the buttons-->
+            @if ("admin".Equals(ViewBag.role)) {
+                <th></th> <!-- Empty Table Head for the buttons-->
+            }
         </tr>
         @foreach (var livre in ViewBag.listeLivre) {
             <tr>
@@ -86,20 +88,22 @@
                 <td>
                     @livre.keywords
                 </td>
-                <td>
-                    <a class="text-success clickable" data-toggle="modal" data-target="#modifierLivreModal"
-                            data-isbn="@livre.isbn"
-                            data-author="@livre.author"
-                            data-title="@livre.title"
-                            data-nb-pages="@livre.nbPages"
-                            data-edition="@livre.edition"
-                            data-year="@livre.year"
-                            data-language="@livre.language"
-                            data-description="@livre.description"
-                            data-keywords="@livre.keywords"
-                            ><span class="glyphicon glyphicon-edit"></span></a>
-                    <a class="text-danger clickable" onclick="supprimerLivre('@livre.isbn')"><span class="glyphicon glyphicon-remove"></span></a>
-                </td>
+                @if ("admin".Equals(ViewBag.role)) {
+                    <td>
+                        <a class="text-success clickable" data-toggle="modal" data-target="#modifierLivreModal"
+                                data-isbn="@livre.isbn"
+                                data-author="@livre.author"
+                                data-title="@livre.title"
+                                data-nb-pages="@livre.nbPages"
+                                data-edition="@livre.edition"
+                                data-year="@livre.year"
+                                data-language="@livre.language"
+                                data-description="@livre.description"
+                                data-keywords="@livre.keywords"
+                                ><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="text-danger clickable" onclick="supprimerLivre('@livre.isbn')"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                }
             </tr>
         }
     </table>
