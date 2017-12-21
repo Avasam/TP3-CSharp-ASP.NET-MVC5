@@ -73,7 +73,7 @@ namespace TP3.Tests.Models
             Dal dal = new Dal();
 
             //assert
-            Assert.AreEqual(true,dal.CreateUser(username,password,email,role));
+            Assert.AreEqual(false,dal.CreateUser(username,password,email,role));
 
 
         }
@@ -82,9 +82,9 @@ namespace TP3.Tests.Models
         public void TestFindUserByEmail()
         {
             // Arrange
-            string username = "bob";
-            string password = "allo";
-            string email = "moi@moi.com";
+            string username = "samuel";
+            string password = "samuel";
+            string email = "samuel@hotmail.com";
             string role = "user";
 
             //act

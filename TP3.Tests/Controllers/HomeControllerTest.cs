@@ -17,19 +17,11 @@ namespace TP3.Tests.Controllers {
 
             // Test pour afficher la page sans erreur
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            RedirectToRouteResult result = controller.AjouterLivre() as RedirectToRouteResult;
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.IsNull(result.ViewBag.error);
-
-            // Test pour afficher la page avec erreur
-            // Act
-            result = controller.Index("testerror") as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual("testerror", result.ViewBag.error);
+            Assert.AreEqual("Members", result.RouteValues["controller"]);
+            Assert.AreEqual("Login", result.RouteValues["action"]);
         }
 
         [TestMethod]
@@ -39,19 +31,12 @@ namespace TP3.Tests.Controllers {
 
             // Test pour afficher la page sans erreur
             // Act
-            ViewResult result = controller.AjouterLivre() as ViewResult;
+            RedirectToRouteResult result = controller.AjouterLivre() as RedirectToRouteResult;
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.IsNull(result.ViewBag.error);
+            Assert.AreEqual("Members", result.RouteValues["controller"]);
+            Assert.AreEqual("Login", result.RouteValues["action"]);
 
-            // Test pour afficher la page avec erreur
-            // Act
-            result = controller.AjouterLivre("testerror") as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual("testerror", result.ViewBag.error);
         }
 
         [TestMethod]
@@ -59,22 +44,22 @@ namespace TP3.Tests.Controllers {
             // Arrange
             HomeController controller = new HomeController();
 
-            // Test un login valide
+            // Test un ajout valide
             // Act
             RedirectToRouteResult result = controller.AjouterLivreAction("isbn", "author", "title", 100, "edition", 2017, "language", "description", "keywords") as RedirectToRouteResult;
 
             // Assert
-            Assert.AreEqual("Home", result.RouteValues["controller"]);
-            Assert.AreEqual("AjouterLivre", result.RouteValues["action"]);
+            Assert.AreEqual("Members", result.RouteValues["controller"]);
+            Assert.AreEqual("Login", result.RouteValues["action"]);
 
 
-            // Tester un login invalide
+            // Tester un ajout invalide
             // Act
             result = controller.AjouterLivreAction(null,null,null,0,null,0,null,null,null) as RedirectToRouteResult;
 
             // Assert
-            Assert.AreEqual("Home", result.RouteValues["controller"]);
-            Assert.AreEqual("Index", result.RouteValues["action"]);
+            Assert.AreEqual("Members", result.RouteValues["controller"]);
+            Assert.AreEqual("Login", result.RouteValues["action"]);
         }
 
         [TestMethod]
@@ -86,8 +71,8 @@ namespace TP3.Tests.Controllers {
             RedirectToRouteResult result = controller.ModifierLivreAction("isbn", "author", "title", 100, "edition", 2017, "language", "description", "keywords") as RedirectToRouteResult;
 
             // Assert
-            Assert.AreEqual("Home", result.RouteValues["controller"]);
-            Assert.AreEqual("Index", result.RouteValues["action"]);
+            Assert.AreEqual("Members", result.RouteValues["controller"]);
+            Assert.AreEqual("Login", result.RouteValues["action"]);
         }
 
         [TestMethod]
@@ -99,8 +84,8 @@ namespace TP3.Tests.Controllers {
             RedirectToRouteResult result = controller.SupprimerLivreAction("isbn") as RedirectToRouteResult;
 
             // Assert
-            Assert.AreEqual("Home", result.RouteValues["controller"]);
-            Assert.AreEqual("Index", result.RouteValues["action"]);
+            Assert.AreEqual("Members", result.RouteValues["controller"]);
+            Assert.AreEqual("Login", result.RouteValues["action"]);
         }
 
     }
