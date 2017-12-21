@@ -30,7 +30,14 @@ namespace TP3.Models
 
                 while (rdr.Read())
                 {
-                    Livres.Add(new Livre(rdr.GetString(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetString(4), rdr.GetInt32(5), rdr.GetString(6), rdr.GetString(7), rdr.GetString(8)));
+                    bool valid = true;
+                    for (int i=0; i<=8; i++) {
+                        if (rdr.IsDBNull(0)) {
+                            valid = false;
+                            break;
+                        }
+                    }
+                    if (valid) Livres.Add(new Livre(rdr.GetString(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetString(4), rdr.GetInt32(5), rdr.GetString(6), rdr.GetString(7), rdr.GetString(8)));
 
                 }                
 

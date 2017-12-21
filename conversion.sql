@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 19 Décembre 2017 à 22:13
+-- Généré le :  Jeu 21 Décembre 2017 à 18:22
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -28,17 +28,26 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
-  `ISBN` varchar(50) DEFAULT NULL,
-  `AUTHOR` varchar(50) DEFAULT NULL,
-  `TITLE` varchar(50) DEFAULT NULL,
-  `NB_PAGES` int(11) DEFAULT NULL,
-  `EDITION` varchar(25) DEFAULT NULL,
-  `YEAR` int(11) DEFAULT NULL,
-  `LANGUAGE` varchar(7) DEFAULT NULL,
-  `DESCRIPTION` text,
-  `KEYWORDS` varchar(6) DEFAULT NULL
+  `ISBN` varchar(50) NOT NULL,
+  `AUTHOR` varchar(50) NOT NULL,
+  `TITLE` varchar(50) NOT NULL,
+  `NB_PAGES` int(11) NOT NULL,
+  `EDITION` varchar(25) DEFAULT '',
+  `YEAR` int(11) DEFAULT '0',
+  `LANGUAGE` varchar(7) NOT NULL,
+  `DESCRIPTION` text NOT NULL,
+  `KEYWORDS` varchar(6) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- RELATIONS POUR LA TABLE `book`:
+--
+
+--
+-- Vider la table avant d'insérer `book`
+--
+
+TRUNCATE TABLE `book`;
 --
 -- Contenu de la table `book`
 --
@@ -1066,6 +1075,15 @@ CREATE TABLE `user` (
   `role` varchar(30) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- RELATIONS POUR LA TABLE `user`:
+--
+
+--
+-- Vider la table avant d'insérer `user`
+--
+
+TRUNCATE TABLE `user`;
 --
 -- Contenu de la table `user`
 --
